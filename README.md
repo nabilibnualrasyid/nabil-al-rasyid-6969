@@ -54,3 +54,45 @@
 <p align="center">
   <i>Learning, building, and improving one project at a time.</i>
 </p>
+
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=nabilibnualrasyid&label=PROFILE+VIEWS&color=7C3AED&style=for-the-badge" alt="Profile views" />
+</p>
+
+<h2 align="center">🏆 GitHub Achievements</h2>
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=nabilibnualrasyid&theme=discord&no-frame=true&no-bg=true&row=1&column=6" width="100%" alt="GitHub trophies" />
+</p>
+
+
+name: Generate Snake Animation
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: nabilibnualrasyid
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+
+      - name: Publish snake animation
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
